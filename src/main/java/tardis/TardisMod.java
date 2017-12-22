@@ -3,7 +3,7 @@ package tardis;
 import java.io.IOException;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -14,17 +14,17 @@ import io.darkcraft.darkcore.mod.config.ConfigHandlerFactory;
 import io.darkcraft.darkcore.mod.helpers.PlayerHelper;
 import io.darkcraft.darkcore.mod.interfaces.IConfigHandlerMod;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import tardis.common.TMRegistry;
 import tardis.common.TardisProxy;
 import tardis.common.command.CommandRegister;
@@ -53,7 +53,7 @@ import tardis.common.tileents.extensions.chameleon.tardis.AbstractTardisChameleo
 import tardis.common.tileents.extensions.chameleon.tardis.DefaultTardisCham;
 import tardis.common.tileents.extensions.chameleon.tardis.NewTardisCham;
 import tardis.common.tileents.extensions.chameleon.tardis.PostboxTardisCham;
-import thaumcraft.api.ItemApi;
+//import thaumcraft.api.ItemApi; // TODO Re-enable when TC updates to 1.12
 
 @Mod(modid = "TardisMod", name = "Tardis Mod", version = "0.995", dependencies = "required-after:FML; required-after:darkcore@[0.46,0.49]; after:CoFHCore; after:appliedenergistics2; after:Waila; before:DragonAPI")
 public class TardisMod implements IConfigHandlerMod
@@ -76,7 +76,7 @@ public class TardisMod implements IConfigHandlerMod
 	public static TardisOwnershipRegistry						plReg;
 	public static CreativeTab									tab					= null;
 	public static CreativeTab									cTab				= null;
-	public static BiomeGenBase									consoleBiome		;
+	public static Biome										consoleBiome		;
 
 
 
@@ -97,7 +97,8 @@ public class TardisMod implements IConfigHandlerMod
 
 		refreshConfigs();
 
-		consoleBiome = new BiomeGenConsoleRoom(Configs.consoleBiomeID);
+		//consoleBiome = new BiomeGenConsoleRoom(Configs.consoleBiomeID);
+ +		consoleBiome = new BiomeGenConsoleRoom();
 //		BiomeDictionary.registerBiomeType(consoleBiome, BiomeDictionary.Type.PLAINS);
 		DimensionManager.registerProviderType(Configs.providerID, TardisWorldProvider.class, Configs.tardisLoaded);
 		initChameleonTypes();
