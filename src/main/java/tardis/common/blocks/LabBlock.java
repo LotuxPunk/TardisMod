@@ -11,7 +11,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import io.darkcraft.darkcore.mod.abstracts.AbstractBlockContainer;
 
-mport net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tardis.TardisMod;
